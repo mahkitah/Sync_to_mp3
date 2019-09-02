@@ -6,3 +6,5 @@ Requires:
 - mutagen (pip install mutagen)
 - flac
 - LAME
+
+Usage: edit the variables at the top of the file and run the script.
