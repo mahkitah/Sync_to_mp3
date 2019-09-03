@@ -177,11 +177,21 @@ def id3_tags_as_dict(id3_tags):
             continue
 
         else:
-            key = id3_tags[t].desc
+            try:
+                key = id3_tags[t].desc
+            except AttributeError:
+                print(f"Ignored {t} frame in {id3_tags['TPE1']} - {id3_tags['TIT2']}")
+                continue
 
-        val = [str(x) for x in id3_tags[t].text]
+        try:
+            val = [str(x) for x in id3_tags[t].text]
+        except AttributeError:
+            print(f"Ignored {t} frame in {id3_tags['TPE1']} - {id3_tags['TIT2']}")
+            continue
+
         flac_like_dict[key] = val
-        flac_like_dict = xx_total_correct(flac_like_dict)
+
+    flac_like_dict = xx_total_correct(flac_like_dict)
 
     return flac_like_dict
 
